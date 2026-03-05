@@ -8,26 +8,38 @@ Scans all subdirectories (depth 1) of a target directory, finds every folder wit
 
 One command. All repos. Done.
 
-## Usage
+### File structure:
 
-```bash
-# Scan the current directory
-python main.py
-
-# Scan a specific directory with a custom commit message
-AUTOPUSH_SCAN_DIR=~/projects \
-AUTOPUSH_COMMIT_MESSAGE="chore: sync local work" \
-python main.py
-
-# Preview what would happen without touching anything
-AUTOPUSH_SCAN_DIR=~/projects AUTOPUSH_DRY_RUN=true python main.py
+```
+autopush/
+├── main.py     # orchestration only
+├── config.py   # env/config loading and validation
+├── scanner.py  # find git repos at max depth 1
+└── git_ops.py  # git status checks and operations
 ```
 
-## Environment variables
+### Run with defaults (scans current directory):
 
-| Variable | Default | Description |
-|---|---|---|
-| `AUTOPUSH_SCAN_DIR` | current directory | Directory to scan for git repos |
-| `AUTOPUSH_COMMIT_MESSAGE` | `Auto-commit: sync local changes` | Commit message to use |
-| `AUTOPUSH_LOG_LEVEL` | `INFO` | Log verbosity (`DEBUG`, `INFO`, `WARNING`, `ERROR`) |
-| `AUTOPUSH_DRY_RUN` | `false` | Set to `true` to preview without making changes |
+```sh
+cd autopush
+python main.py 
+```
+
+### Override via environment variables:
+
+```sh
+AUTOPUSH_SCAN_DIR=$HOME/projects \
+AUTOPUSH_COMMIT_MESSAGE="chore: sync local work" \
+AUTOPUSH_LOG_LEVEL=DEBUG \
+python main.py
+```
+
+### Dry run (no changes made, just logs what would happen):
+
+```sh
+AUTOPUSH_SCAN_DIR=$HOME/projects \
+AUTOPUSH_DRY_RUN=true \
+python main.py
+```
+
+<br>
