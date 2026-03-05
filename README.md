@@ -10,7 +10,7 @@ One command. All repos. Done.
 
 ### File structure:
 
-```
+```sh
 autopush/
 ├── main.py     # orchestration only
 ├── config.py   # env/config loading and validation
@@ -28,7 +28,7 @@ python main.py
 ### Override via environment variables:
 
 ```sh
-AUTOPUSH_SCAN_DIR=$HOME/projects \
+AUTOPUSH_SCAN_DIR="$HOME/projects" \
 AUTOPUSH_COMMIT_MESSAGE="chore: sync local work" \
 AUTOPUSH_LOG_LEVEL=DEBUG \
 python main.py
@@ -37,7 +37,7 @@ python main.py
 ### Dry run (no changes made, just logs what would happen):
 
 ```sh
-AUTOPUSH_SCAN_DIR=$HOME/projects \
+AUTOPUSH_SCAN_DIR="$HOME/projects" \
 AUTOPUSH_DRY_RUN=true \
 python main.py
 ```
