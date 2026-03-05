@@ -3,5 +3,5 @@ name = "autopush"
 version = "0.1.0"
 description = "git commit your changes across multiple directories"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = []
