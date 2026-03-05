@@ -4,8 +4,8 @@ import logging
 import sys
 
 from config import load_config, validate_config
+from git_ops import add_commit_push, needs_push
 from scanner import find_git_repos
-from git_ops import needs_push, add_commit_push
 
 
 def setup_logging(log_level: str) -> None:
@@ -68,9 +68,7 @@ def main() -> int:
         logger.error("Configuration error: %s", exc)
         return 1
 
-    logger.info(
-        "Scanning %s (dry_run=%s)", config["scan_dir"], config["dry_run"]
-    )
+    logger.info("Scanning %s (dry_run=%s)", config["scan_dir"], config["dry_run"])
 
     repos = find_git_repos(config["scan_dir"])
     if not repos:

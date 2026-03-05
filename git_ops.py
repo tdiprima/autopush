@@ -1,7 +1,7 @@
 """Git operations: check status, add, commit, and push."""
 
 import logging
-import subprocess
+import subprocess  # nosec B404
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -16,7 +16,7 @@ def _run_git(args: list[str], cwd: Path) -> subprocess.CompletedProcess:
         cwd=str(cwd),
         capture_output=True,
         text=True,
-    )
+    )  # nosec B404
 
 
 def has_working_tree_changes(repo: Path) -> bool:

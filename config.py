@@ -2,6 +2,7 @@
 
 import logging
 import os
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -12,8 +13,10 @@ DEFAULT_LOG_LEVEL = "INFO"
 def load_config() -> dict:
     """Read configuration from environment variables with sane defaults."""
     config = {
-        "scan_dir": os.environ.get("AUTOPUSH_SCAN_DIR", os.getcwd()),
-        "commit_message": os.environ.get("AUTOPUSH_COMMIT_MESSAGE", DEFAULT_COMMIT_MESSAGE),
+        "scan_dir": os.environ.get("AUTOPUSH_SCAN_DIR", str(Path.cwd())),
+        "commit_message": os.environ.get(
+            "AUTOPUSH_COMMIT_MESSAGE", DEFAULT_COMMIT_MESSAGE
+        ),
         "log_level": os.environ.get("AUTOPUSH_LOG_LEVEL", DEFAULT_LOG_LEVEL),
         "dry_run": os.environ.get("AUTOPUSH_DRY_RUN", "false").lower() == "true",
     }

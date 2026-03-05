@@ -1,7 +1,6 @@
 """Scan a directory (max depth 1) for subfolders that contain a .git directory."""
 
 import logging
-import os
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
